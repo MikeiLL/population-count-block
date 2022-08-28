@@ -5,8 +5,8 @@
   "version": "0.1.0",
   "title": "Population Count",
   "category": "widgets",
-  "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "icon": "admin-site-alt",
+  "description": "Population Count block scaffolded with Create Block tool.",
   "supports": {
     "html": false
   },
