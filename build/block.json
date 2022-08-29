@@ -5,10 +5,18 @@
   "version": "0.1.0",
   "title": "Population Count",
   "category": "widgets",
-  "icon": "admin-site-alt",
-  "description": "Population Count block scaffolded with Create Block tool.",
+  "icon": "admin-edit-alt",
+  "description": "Example block scaffolded with Create Block tool.",
   "supports": {
-    "html": false
+    "html": true,
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    },
+    "color": {
+      "text": true,
+      "background": true
+    }
   },
   "textdomain": "population-count",
   "editorScript": "file:./index.js",

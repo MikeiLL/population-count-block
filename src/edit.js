@@ -11,7 +11,8 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import {RichText, MediaUpload, useBlockProps} from '@wordpress/block-editor';
+import { Button } from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -29,13 +30,44 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit() {
+export default function Edit( props ) {
+	const {
+		attributes: { preamble, closing },
+		setAttributes,
+	} = props;
+
+	const onChangePreamble = ( value ) => {
+		setAttributes( { preamble: value } );
+	};
+	const onChangeClosing = ( value ) => {
+		setAttributes( { closing: value } );
+	};
 	return (
-		<p { ...useBlockProps() }>
-			{ __(
-				'Population Count – editor content coming soon!',
-				'population-count'
-			) }
-		</p>
+		<div {...useBlockProps()}>
+			<RichText
+				tagName="span"
+				className="steps"
+				placeholder={ __(
+					'Preamble',
+					'population-count'
+				) }
+				value={ preamble }
+				onChange={ onChangePreamble }
+			/>
+			<span id="population-count-container" class="population-count-count" />
+			<RichText
+				tagName="span"
+				className="steps"
+				placeholder={ __(
+					'Closing',
+					'population-count'
+				) }
+				value={ closing }
+				onChange={ onChangeClosing }
+			/>
+			<script>
+			console.log("hello");
+			</script>
+		</div>
 	);
 }
