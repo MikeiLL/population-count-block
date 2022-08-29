@@ -30,8 +30,6 @@ function population_count_enqueue_scripts(){
 	wp_register_script( 'population-count-js', plugin_dir_url( __FILE__ ) . 'js/main.js', ['jquery'], '1.0.0', true );
 	wp_enqueue_script( 'population-count-js' );
 
-	propserity_sustainable_population_localize_script();
-
 }
 add_action( 'wp_enqueue_scripts', 'population_count_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'population_count_enqueue_scripts' );
