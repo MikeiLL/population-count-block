@@ -18,23 +18,27 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 export default function save(props) {
 
 	const {
-		attributes: { preamble, closing },
-			setAttributes,
+		attributes: {preamble, closing, alignment},
+		className,
+		setAttributes,
 	} = props;
 
+
 	return (
-		<div { ...useBlockProps.save() }>
-			<RichText.Content
-				tagName="span"
-				className="preamble"
-				value={ preamble }
-			/>
-			<span id="population-count-container" class="population-count-count"> ___ </span>
-			<RichText.Content
-				tagName="span"
-				className="closing"
-				value={ closing }
-			/>
+		<div className={className} {...useBlockProps.save()}>
+			<p style={ {textAlign:  alignment } }>
+				<RichText.Content
+					tagName="span"
+					className="preamble"
+					value={ preamble }
+				/>
+				<span id="population-count-container" class="population-count-count"> ___ </span>
+				<RichText.Content
+					tagName="span"
+					className="closing"
+					value={ closing }
+				/>
+			</p>
 		</div>
 	);
 }

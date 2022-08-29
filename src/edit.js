@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { RichText, useBlockProps} from '@wordpress/block-editor';
+import { RichText, BlockControls, AlignmentToolbar, useBlockProps} from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
 
 /**
@@ -32,9 +32,14 @@ import './editor.scss';
  */
 export default function Edit( props ) {
 	const {
-		attributes: { preamble, closing },
+		attributes: {preamble, closing, alignment},
+		className, focus,
 		setAttributes,
 	} = props;
+
+	function onChangeAlignment( updatedAlignment ) {
+		setAttributes( { alignment: updatedAlignment } );
+	}
 
 	const onChangePreamble = ( value ) => {
 		setAttributes( { preamble: value } );
@@ -44,27 +49,34 @@ export default function Edit( props ) {
 	};
 	return (
 		<div {...useBlockProps()}>
-			<RichText
-				tagName="span"
-				className="steps"
-				placeholder={ __(
-					'Preamble',
-					'population-count'
-				) }
-				value={ preamble }
-				onChange={ onChangePreamble }
-			/>
-			<span id="population-count-container" class="population-count-count"> ___ </span>
-			<RichText
-				tagName="span"
-				className="steps"
-				placeholder={ __(
-					'Closing',
-					'population-count'
-				) }
-				value={ closing }
-				onChange={ onChangeClosing }
-			/>
+			<BlockControls>
+				<AlignmentToolbar
+					value={alignment}
+					onChange={ onChangeAlignment } />
+			</BlockControls>
+			<p style={{textAlign: alignment}}>
+				<RichText
+					tagName="span"
+					className="steps"
+					placeholder={ __(
+						'Preamble',
+						'population-count'
+					) }
+					value={ preamble }
+					onChange={ onChangePreamble }
+				/>
+				<span id="population-count-container" class="population-count-count"> ___ </span>
+				<RichText
+					tagName="span"
+					className="steps"
+					placeholder={ __(
+						'Closing',
+						'population-count'
+					) }
+					value={ closing }
+					onChange={ onChangeClosing }
+				/>
+			</p>
 		</div>
 	);
 }
