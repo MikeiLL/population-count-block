@@ -18,13 +18,10 @@
     "html": true,
     "typography": {
       "fontSize": true,
-      "lineHeight": true,
-      "fontFamily": true,
-      "fontWeight": true
+      "lineHeight": true
     },
     "color": {
-      "text": true,
-      "background": true
+      "background": false
     }
   },
   "textdomain": "population-count",
