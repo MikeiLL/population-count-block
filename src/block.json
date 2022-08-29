@@ -5,13 +5,22 @@
 	"version": "0.1.0",
 	"title": "Population Count",
 	"category": "widgets",
-	"icon": "admin-edit-alt",
-	"description": "Example block scaffolded with Create Block tool.",
+	"icon": "admin-site-alt",
+	"description": "Display counter estimating current human global population.",
 	"supports": {
+		"align": true,
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"blockGap": true
+	},
+		"alignWide": true,
 		"html": true,
 		"typography": {
 			"fontSize": true,
-			"lineHeight": true
+			"lineHeight": true,
+			"fontFamily": true,
+			"fontWeight": true
 		},
 		"color": {
 			"text": true,

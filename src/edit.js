@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import {RichText, MediaUpload, useBlockProps} from '@wordpress/block-editor';
+import { RichText, useBlockProps} from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
 
 /**
@@ -54,7 +54,7 @@ export default function Edit( props ) {
 				value={ preamble }
 				onChange={ onChangePreamble }
 			/>
-			<span id="population-count-container" class="population-count-count" />
+			<span id="population-count-container" class="population-count-count"> ___ </span>
 			<RichText
 				tagName="span"
 				className="steps"
@@ -65,9 +65,6 @@ export default function Edit( props ) {
 				value={ closing }
 				onChange={ onChangeClosing }
 			/>
-			<script>
-			console.log("hello");
-			</script>
 		</div>
 	);
 }

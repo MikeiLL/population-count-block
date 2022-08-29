@@ -85,13 +85,13 @@ function Edit(props) {
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     id: "population-count-container",
     class: "population-count-count"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+  }, " ___ "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "span",
     className: "steps",
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Closing', 'population-count'),
     value: closing,
     onChange: onChangeClosing
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("script", null, "console.log(\"hello\");"));
+  }));
 }
 
 /***/ }),
@@ -184,8 +184,26 @@ __webpack_require__.r(__webpack_exports__);
  * @return {WPElement} Element to render.
  */
 
-function save() {
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save(), 'Population Count – saved content coming soon!');
+function save(props) {
+  const {
+    attributes: {
+      preamble,
+      closing
+    },
+    setAttributes
+  } = props;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    tagName: "span",
+    className: "preamble",
+    value: preamble
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    id: "population-count-container",
+    class: "population-count-count"
+  }, " ___ "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    tagName: "span",
+    className: "closing",
+    value: closing
+  }));
 }
 
 /***/ }),
@@ -270,7 +288,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/population-count","version":"0.1.0","title":"Population Count","category":"widgets","icon":"admin-edit-alt","description":"Example block scaffolded with Create Block tool.","supports":{"html":true,"typography":{"fontSize":true,"lineHeight":true},"color":{"text":true,"background":true}},"textdomain":"population-count","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/population-count","version":"0.1.0","title":"Population Count","category":"widgets","icon":"admin-site-alt","description":"Display counter estimating current human global population.","supports":{"align":true,"spacing":{"margin":true,"padding":true,"blockGap":true},"alignWide":true,"html":true,"typography":{"fontSize":true,"lineHeight":true,"fontFamily":true,"fontWeight":true},"color":{"text":true,"background":true}},"textdomain":"population-count","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

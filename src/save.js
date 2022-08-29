@@ -4,7 +4,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { RichText, useBlockProps } from '@wordpress/block-editor';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -15,10 +15,26 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
+export default function save(props) {
+
+	const {
+		attributes: { preamble, closing },
+			setAttributes,
+	} = props;
+
 	return (
-		<p { ...useBlockProps.save() }>
-			{ 'Population Count – saved content coming soon!' }
-		</p>
+		<div { ...useBlockProps.save() }>
+			<RichText.Content
+				tagName="span"
+				className="preamble"
+				value={ preamble }
+			/>
+			<span id="population-count-container" class="population-count-count"> ___ </span>
+			<RichText.Content
+				tagName="span"
+				className="closing"
+				value={ closing }
+			/>
+		</div>
 	);
 }

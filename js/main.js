@@ -1,5 +1,3 @@
-console.log("i loaded.");
-
 window.addEventListener("load", (event) => {
   let population_count_container = document.getElementById(
     "population-count-container"
