@@ -101,7 +101,7 @@ function Edit(props) {
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     id: "population-count-container",
     class: "population-count-count"
-  }, " ___ "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+  }, " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "span",
     className: "steps",
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Closing', 'population-count'),
@@ -225,7 +225,7 @@ function save(props) {
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
     id: "population-count-container",
     class: "population-count-count"
-  }, " ___ "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
+  }, " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
     tagName: "span",
     className: "closing",
     value: closing
@@ -343,7 +343,7 @@ function _extends() {
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/population-count","version":"0.1.0","title":"Population Count","category":"common","icon":"admin-site-alt","description":"Display counter estimating current human global population.","supports":{"align":true,"spacing":{"margin":true,"padding":true,"blockGap":true},"alignWide":true,"html":true,"typography":{"fontSize":true,"lineHeight":true},"color":{"background":false}},"textdomain":"population-count","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","attributes":{"alignment":{"type":"string"}}}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/population-count","version":"0.1.0","title":"Population Count","category":"layout","icon":"admin-site-alt","description":"Display counter estimating current human global population.","supports":{"align":true,"spacing":{"margin":true,"padding":true,"blockGap":true},"alignWide":true,"html":true,"typography":{"fontSize":true,"lineHeight":true},"color":{"background":false}},"textdomain":"population-count","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","attributes":{"alignment":{"type":"string"},"preamble":{"type":"string","source":"html","selector":".preamble"},"closing":{"type":"string","source":"html","selector":".closing"}}}');
 
 /***/ })
 

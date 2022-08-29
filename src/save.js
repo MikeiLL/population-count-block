@@ -30,14 +30,12 @@ export default function save(props) {
 				<RichText.Content
 					tagName="span"
 					className="preamble"
-					value={ preamble }
-				/>
-				<span id="population-count-container" class="population-count-count"> ___ </span>
+					value={ preamble } />
+				<span id="population-count-container" class="population-count-count"> </span>
 				<RichText.Content
 					tagName="span"
 					className="closing"
-					value={ closing }
-				/>
+					value={ closing } />
 			</p>
 		</div>
 	);

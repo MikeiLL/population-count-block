@@ -65,7 +65,7 @@ export default function Edit( props ) {
 					value={ preamble }
 					onChange={ onChangePreamble }
 				/>
-				<span id="population-count-container" class="population-count-count"> ___ </span>
+				<span id="population-count-container" class="population-count-count"> </span>
 				<RichText
 					tagName="span"
 					className="steps"

@@ -4,7 +4,7 @@
   "name": "create-block/population-count",
   "version": "0.1.0",
   "title": "Population Count",
-  "category": "common",
+  "category": "layout",
   "icon": "admin-site-alt",
   "description": "Display counter estimating current human global population.",
   "supports": {
@@ -31,6 +31,16 @@
   "attributes": {
     "alignment": {
       "type": "string"
+    },
+    "preamble": {
+      "type": "string",
+      "source": "html",
+      "selector": ".preamble"
+    },
+    "closing": {
+      "type": "string",
+      "source": "html",
+      "selector": ".closing"
     }
   }
 }
