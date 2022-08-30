@@ -11,8 +11,9 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { RichText, BlockControls, AlignmentToolbar, useBlockProps} from '@wordpress/block-editor';
-import { Button } from '@wordpress/components';
+import { RichText, BlockControls, AlignmentToolbar, useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { RangeControl, ButtonGroup, Button, BaseControl, TextControl, ToggleControl, Panel, PanelBody, PanelRow } from '@wordpress/components';
+
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -32,7 +33,7 @@ import './editor.scss';
  */
 export default function Edit( props ) {
 	const {
-		attributes: {preamble, closing, alignment},
+		attributes: {preamble, closing, alignment, fontsize},
 		className, focus,
 		setAttributes,
 	} = props;
@@ -47,6 +48,7 @@ export default function Edit( props ) {
 	const onChangeClosing = ( value ) => {
 		setAttributes( { closing: value } );
 	};
+
 	return (
 		<div {...useBlockProps()}>
 			<BlockControls>
@@ -54,6 +56,53 @@ export default function Edit( props ) {
 					value={alignment}
 					onChange={ onChangeAlignment } />
 			</BlockControls>
+			<InspectorControls>
+				<PanelBody
+				title='Type Settings'
+					initialOpen="true">
+					<PanelRow>
+						<BaseControl label="Outer" className="kb-responsive-range-control">
+
+							<div className="kadence-title-bar">
+								<span className="kadence-control-title">Font Size</span>
+								<ButtonGroup className="kb-measure-responsive-options" aria-label="Device">
+									<Button className="kb-responsive-btn kb-desk-tab is-active is-small">
+										<span className="dashicon dashicons dashicons-desktop"></span>
+									</Button>
+									<Button className="kb-responsive-btn kb-tablet-tab is-small">
+										<span className="dashicon dashicons dashicons-tablet"></span>
+									</Button>
+									<Button className="kb-responsive-btn kb-mobile-tab is-small">
+										<span className="dashicon dashicons dashicons-smartphone"></span>
+									</Button>
+								</ButtonGroup>
+							</div>
+
+							<div className="kadence-controls-content kb-responsive-range-control-inner">
+								<BaseControl label="Middle" className="kadence-range-control">
+									<div className="kadence-range-control-inner">
+
+										<BaseControl
+											className="components-base-control components-range-control kadence-range-control-range"
+											label="Inner"
+											>
+											<RangeControl
+													value={ fontsize }
+													onChange={ ( value ) => setAttributes( {fontsize: value} ) }
+													min={ 2 }
+													max={ 10 }
+											/>
+										</BaseControl>
+
+										<div className="kadence-units"> em</div>
+
+									</div>
+								</BaseControl>
+							</div>
+						</BaseControl>
+					</PanelRow>
+				</PanelBody>
+			</InspectorControls>
 			<p style={{textAlign: alignment}}>
 				<RichText
 					tagName="span"
