@@ -33,7 +33,7 @@ import './editor.scss';
  */
 export default function Edit( props ) {
 	const {
-		attributes: {preamble, closing, alignment, fontsize},
+		attributes: {preamble, closing, alignment},
 		className, focus,
 		setAttributes,
 	} = props;
@@ -45,10 +45,11 @@ export default function Edit( props ) {
 	const onChangePreamble = ( value ) => {
 		setAttributes( { preamble: value } );
 	};
+
 	const onChangeClosing = ( value ) => {
 		setAttributes( { closing: value } );
 	};
-
+	console.log(props.attributes.fontsize);
 	return (
 		<div {...useBlockProps()}>
 			<BlockControls>
@@ -58,47 +59,18 @@ export default function Edit( props ) {
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody
-				title='Type Settings'
+				title='Additional Settings'
 					initialOpen="true">
 					<PanelRow>
-						<BaseControl label="Outer" className="kb-responsive-range-control">
-
-							<div className="kadence-title-bar">
-								<span className="kadence-control-title">Font Size</span>
-								<ButtonGroup className="kb-measure-responsive-options" aria-label="Device">
-									<Button className="kb-responsive-btn kb-desk-tab is-active is-small">
-										<span className="dashicon dashicons dashicons-desktop"></span>
-									</Button>
-									<Button className="kb-responsive-btn kb-tablet-tab is-small">
-										<span className="dashicon dashicons dashicons-tablet"></span>
-									</Button>
-									<Button className="kb-responsive-btn kb-mobile-tab is-small">
-										<span className="dashicon dashicons dashicons-smartphone"></span>
-									</Button>
-								</ButtonGroup>
-							</div>
-
-							<div className="kadence-controls-content kb-responsive-range-control-inner">
-								<BaseControl label="Middle" className="kadence-range-control">
-									<div className="kadence-range-control-inner">
-
-										<BaseControl
-											className="components-base-control components-range-control kadence-range-control-range"
-											label="Inner"
-											>
-											<RangeControl
-													value={ fontsize }
-													onChange={ ( value ) => setAttributes( {fontsize: value} ) }
-													min={ 2 }
-													max={ 10 }
-											/>
-										</BaseControl>
-
-										<div className="kadence-units"> em</div>
-
-									</div>
-								</BaseControl>
-							</div>
+						<BaseControl>
+							<RangeControl
+								label="Font Size (em)"
+								min={0.5}
+								max={10}
+								step={0.1}
+								value={props.attributes.fontsize}
+								onChange={ value => setAttributes( {fontsize: value}) }
+							/>
 						</BaseControl>
 					</PanelRow>
 				</PanelBody>
