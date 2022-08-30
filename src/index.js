@@ -28,20 +28,10 @@ import metadata from './block.json';
  */
 registerBlockType(metadata.name, {
 
-	attributes: {
-		fontsize: {
-			type: 'number'
-		},
-		alignment: {
-			type: 'string'
-		},
-		preamble: {
-			type: 'string'
-		},
-		closing: {
-			type: 'string'
-		},
-	},
+	/**
+	 * attributes @see block.json
+	 * */
+
 	/**
 	 * @see ./edit.js
 	 */

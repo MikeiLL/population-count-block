@@ -17,7 +17,7 @@
     "alignWide": true,
     "html": true,
     "typography": {
-      "fontSize": true,
+      "fontSize": false,
       "lineHeight": true
     },
     "color": {
@@ -41,6 +41,9 @@
       "type": "string",
       "source": "html",
       "selector": ".closing"
+    },
+    "fontsize": {
+      "type": "number"
     }
   }
 }

@@ -16,6 +16,12 @@ import { RangeControl, ButtonGroup, Button, BaseControl, TextControl, ToggleCont
 
 
 /**
+ * Source
+ * https://github.com/WPDevelopers/notificationx/blob/3fb4647777b73450f7959617fb656f55e31cb1be/blocks/controls/src/controls/withResButtons/index.js
+ * @see handle*BtnClick below */
+import { dispatch } from "@wordpress/data";
+
+/**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
  *
@@ -33,7 +39,7 @@ import './editor.scss';
  */
 export default function Edit( props ) {
 	const {
-		attributes: {preamble, closing, alignment},
+		attributes: {preamble, closing, alignment, previewmode},
 		className, focus,
 		setAttributes,
 	} = props;
@@ -49,7 +55,34 @@ export default function Edit( props ) {
 	const onChangeClosing = ( value ) => {
 		setAttributes( { closing: value } );
 	};
-	console.log(props.attributes.fontsize);
+
+	const handleDesktopBtnClick = ({
+		setPreviewDeviceType,
+		setAttributes,
+	}) => {
+		setAttributes({
+			previewmode: "Desktop",
+		});
+		setPreviewDeviceType("Desktop");
+	};
+
+	const handleTabBtnClick = ({ setPreviewDeviceType, setAttributes }) => {
+		setAttributes({
+			previewmode: "Tablet",
+		});
+		setPreviewDeviceType("Tablet");
+	};
+
+	const handleMobileBtnClick = ({
+		setPreviewDeviceType,
+		setAttributes,
+	}) => {
+		setAttributes({
+			previewmode: "Mobile",
+		});
+		setPreviewDeviceType("Mobile");
+	};
+
 	return (
 		<div {...useBlockProps()}>
 			<BlockControls>
@@ -59,12 +92,60 @@ export default function Edit( props ) {
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody
-				title='Additional Settings'
+				title='Type Settings'
 					initialOpen="true">
+
+					<div className="kadence-title-bar">
+              <span className="kadence-control-title">Font Size (em)</span>
+              <ButtonGroup className="kb-measure-responsive-options" aria-label="Device">
+                <Button className="kb-responsive-btn kb-desk-tab is-active is-small">
+								<span
+								onClick={() =>
+									handleDesktopBtnClick({
+										setAttributes,
+										setPreviewDeviceType:
+											dispatch("core/edit-post")
+												.__experimentalSetPreviewDeviceType,
+									})
+								}
+								className={`typoResButton dashicons dashicons-desktop ${
+									previewmode === "Desktop" ? "active" : " "
+								}`}></span>
+                </Button>
+                <Button className="kb-responsive-btn kb-tablet-tab is-small">
+								<span
+									onClick={() =>
+										handleTabBtnClick({
+											setAttributes,
+											setPreviewDeviceType:
+												dispatch("core/edit-post")
+													.__experimentalSetPreviewDeviceType,
+										})
+									}
+									className={`typoResButton dashicons dashicons-tablet ${
+										previewmode === "Tablet" ? "active" : " "
+									}`}></span>
+                </Button>
+                <Button className="kb-responsive-btn kb-mobile-tab is-small">
+								<span
+									onClick={() =>
+										handleMobileBtnClick({
+											setAttributes,
+											setPreviewDeviceType:
+												dispatch("core/edit-post")
+													.__experimentalSetPreviewDeviceType,
+										})
+									}
+									className={`typoResButton dashicons dashicons-smartphone ${
+										previewmode === "Mobile" ? "active" : " "
+									}`}></span>
+                </Button>
+              </ButtonGroup>
+            </div>
 					<PanelRow>
-						<BaseControl>
+						<BaseControl className="width-100">
 							<RangeControl
-								label="Font Size (em)"
+								label=" "
 								min={0.5}
 								max={10}
 								step={0.1}

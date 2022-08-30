@@ -20,7 +20,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
 
 
 /**
@@ -36,6 +38,12 @@ __webpack_require__.r(__webpack_exports__);
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 
+
+
+/**
+ * Source
+ * https://github.com/WPDevelopers/notificationx/blob/3fb4647777b73450f7959617fb656f55e31cb1be/blocks/controls/src/controls/withResButtons/index.js
+ * @see handle*BtnClick below */
 
 
 /**
@@ -60,7 +68,8 @@ function Edit(props) {
     attributes: {
       preamble,
       closing,
-      alignment
+      alignment,
+      previewmode
     },
     className,
     focus,
@@ -85,15 +94,80 @@ function Edit(props) {
     });
   };
 
-  console.log(props.attributes.fontsize);
+  const handleDesktopBtnClick = _ref => {
+    let {
+      setPreviewDeviceType,
+      setAttributes
+    } = _ref;
+    setAttributes({
+      previewmode: "Desktop"
+    });
+    setPreviewDeviceType("Desktop");
+  };
+
+  const handleTabBtnClick = _ref2 => {
+    let {
+      setPreviewDeviceType,
+      setAttributes
+    } = _ref2;
+    setAttributes({
+      previewmode: "Tablet"
+    });
+    setPreviewDeviceType("Tablet");
+  };
+
+  const handleMobileBtnClick = _ref3 => {
+    let {
+      setPreviewDeviceType,
+      setAttributes
+    } = _ref3;
+    setAttributes({
+      previewmode: "Mobile"
+    });
+    setPreviewDeviceType("Mobile");
+  };
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.AlignmentToolbar, {
     value: alignment,
     onChange: onChangeAlignment
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: "Additional Settings",
+    title: "Type Settings",
     initialOpen: "true"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
-    label: "Font Size (em)",
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "kadence-title-bar"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "kadence-control-title"
+  }, "Font Size (em)"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ButtonGroup, {
+    className: "kb-measure-responsive-options",
+    "aria-label": "Device"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    className: "kb-responsive-btn kb-desk-tab is-active is-small"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    onClick: () => handleDesktopBtnClick({
+      setAttributes,
+      setPreviewDeviceType: (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.dispatch)("core/edit-post").__experimentalSetPreviewDeviceType
+    }),
+    className: `typoResButton dashicons dashicons-desktop ${previewmode === "Desktop" ? "active" : " "}`
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    className: "kb-responsive-btn kb-tablet-tab is-small"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    onClick: () => handleTabBtnClick({
+      setAttributes,
+      setPreviewDeviceType: (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.dispatch)("core/edit-post").__experimentalSetPreviewDeviceType
+    }),
+    className: `typoResButton dashicons dashicons-tablet ${previewmode === "Tablet" ? "active" : " "}`
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    className: "kb-responsive-btn kb-mobile-tab is-small"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    onClick: () => handleMobileBtnClick({
+      setAttributes,
+      setPreviewDeviceType: (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.dispatch)("core/edit-post").__experimentalSetPreviewDeviceType
+    }),
+    className: `typoResButton dashicons dashicons-smartphone ${previewmode === "Mobile" ? "active" : " "}`
+  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, {
+    className: "width-100"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: " ",
     min: 0.5,
     max: 10,
     step: 0.1,
@@ -167,20 +241,9 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
-  attributes: {
-    fontsize: {
-      type: 'number'
-    },
-    alignment: {
-      type: 'string'
-    },
-    preamble: {
-      type: 'string'
-    },
-    closing: {
-      type: 'string'
-    }
-  },
+  /**
+   * attributes @see block.json
+   * */
 
   /**
    * @see ./edit.js
@@ -241,7 +304,7 @@ function save(props) {
     className,
     setAttributes
   } = props;
-  console.log("and here " + props.attributes.fontsize);
+  console.log("and here ", props.attributes.fontsize);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
     className: className
   }, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", {
@@ -318,6 +381,16 @@ module.exports = window["wp"]["components"];
 
 /***/ }),
 
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["data"];
+
+/***/ }),
+
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -373,7 +446,7 @@ function _extends() {
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/population-count","version":"0.1.0","title":"Population Count","category":"layout","icon":"admin-site-alt","description":"Display counter estimating current human global population.","supports":{"align":true,"spacing":{"margin":true,"padding":true,"blockGap":true},"alignWide":true,"html":true,"typography":{"fontSize":true,"lineHeight":true},"color":{"background":false}},"textdomain":"population-count","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","attributes":{"alignment":{"type":"string"},"preamble":{"type":"string","source":"html","selector":".preamble"},"closing":{"type":"string","source":"html","selector":".closing"}}}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/population-count","version":"0.1.0","title":"Population Count","category":"layout","icon":"admin-site-alt","description":"Display counter estimating current human global population.","supports":{"align":true,"spacing":{"margin":true,"padding":true,"blockGap":true},"alignWide":true,"html":true,"typography":{"fontSize":false,"lineHeight":true},"color":{"background":false}},"textdomain":"population-count","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","attributes":{"alignment":{"type":"string"},"preamble":{"type":"string","source":"html","selector":".preamble"},"closing":{"type":"string","source":"html","selector":".closing"},"fontsize":{"type":"number"}}}');
 
 /***/ })
 

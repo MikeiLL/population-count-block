@@ -23,7 +23,7 @@ export default function save(props) {
 		setAttributes,
 	} = props;
 
-	console.log("and here " + props.attributes.fontsize);
+	console.log("and here ", props.attributes.fontsize);
 	return (
 		<div className={className} {...useBlockProps.save()}>
 			<p style={ {textAlign:  alignment } }>
