@@ -69,7 +69,10 @@ function Edit(props) {
       preamble,
       closing,
       alignment,
-      previewmode
+      previewmode = "Desktop",
+      DesktopFontSize,
+      MobileFontSize,
+      TabletFontSize
     },
     className,
     focus,
@@ -169,11 +172,11 @@ function Edit(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
     label: " ",
     min: 0.5,
-    max: 10,
+    max: 8,
     step: 0.1,
-    value: props.attributes.fontsize,
+    value: props.attributes[previewmode + "FontSize"] || 3,
     onChange: value => setAttributes({
-      fontsize: value
+      [previewmode + "FontSize"]: value
     })
   }))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     style: {
@@ -186,7 +189,6 @@ function Edit(props) {
     value: preamble,
     onChange: onChangePreamble
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    id: "population-count-container",
     class: "population-count-count"
   }, " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "span",
@@ -194,7 +196,19 @@ function Edit(props) {
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Closing', 'population-count'),
     value: closing,
     onChange: onChangeClosing
-  })));
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `.wp-block-create-block-population-count {
+				font-size: ${DesktopFontSize}em;
+			}
+			@media (max-width: 767px) {
+					.wp-block-create-block-population-count {
+						font-size: ${MobileFontSize}em;
+					}
+				}
+				@media (min-width: 768px) and (max-width: 1050px) {
+					.wp-block-create-block-population-count {
+						font-size: ${TabletFontSize}em;
+					}
+				}`));
 }
 
 /***/ }),
@@ -299,12 +313,13 @@ function save(props) {
       preamble,
       closing,
       alignment,
-      fontsize
+      DesktopFontSize,
+      MobileFontSize,
+      TabletFontSize
     },
     className,
     setAttributes
   } = props;
-  console.log("and here ", props.attributes.fontsize);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
     className: className
   }, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", {
@@ -322,7 +337,19 @@ function save(props) {
     tagName: "span",
     className: "closing",
     value: closing
-  })));
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, `.wp-block-create-block-population-count {
+				font-size: ${DesktopFontSize}em;
+			}
+			@media (max-width: 767px) {
+					.wp-block-create-block-population-count {
+						font-size: ${MobileFontSize}em;
+					}
+				}
+				@media (min-width: 768px) and (max-width: 1050px) {
+					.wp-block-create-block-population-count {
+						font-size: ${TabletFontSize}em;
+					}
+				}`));
 }
 
 /***/ }),
@@ -446,7 +473,7 @@ function _extends() {
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/population-count","version":"0.1.0","title":"Population Count","category":"layout","icon":"admin-site-alt","description":"Display counter estimating current human global population.","supports":{"align":true,"spacing":{"margin":true,"padding":true,"blockGap":true},"alignWide":true,"html":true,"typography":{"fontSize":false,"lineHeight":true},"color":{"background":false}},"textdomain":"population-count","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","attributes":{"alignment":{"type":"string"},"preamble":{"type":"string","source":"html","selector":".preamble"},"closing":{"type":"string","source":"html","selector":".closing"},"fontsize":{"type":"number"}}}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/population-count","version":"0.1.0","title":"Population Count","category":"layout","icon":"admin-site-alt","description":"Display counter estimating current human global population.","supports":{"align":true,"spacing":{"margin":true,"padding":true,"blockGap":true},"alignWide":true,"html":true,"typography":{"fontSize":false,"lineHeight":true},"color":{"background":false}},"textdomain":"population-count","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","attributes":{"alignment":{"type":"string"},"preamble":{"type":"string","source":"html","selector":".preamble"},"closing":{"type":"string","source":"html","selector":".closing"},"DesktopFontSize":{"type":"number"},"TabletFontSize":{"type":"number"},"MobileFontSize":{"type":"number"}}}');
 
 /***/ })
 
