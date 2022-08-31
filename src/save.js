@@ -18,12 +18,11 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 export default function save(props) {
 
 	const {
-		attributes: {preamble, closing, alignment, fontsize},
+		attributes: {preamble, closing, alignment, DesktopFontSize, MobileFontSize, TabletFontSize},
 		className,
 		setAttributes,
 	} = props;
 
-	console.log("and here ", props.attributes.fontsize);
 	return (
 		<div className={className} {...useBlockProps.save()}>
 			<p style={ {textAlign:  alignment } }>
@@ -39,6 +38,22 @@ export default function save(props) {
 					value={ closing }
 				/>
 			</p>
+			<style>{
+			`.wp-block-create-block-population-count {
+				font-size: ${DesktopFontSize}em;
+			}
+			@media (max-width: 767px) {
+					.wp-block-create-block-population-count {
+						font-size: ${MobileFontSize}em;
+					}
+				}
+				@media (min-width: 768px) and (max-width: 1050px) {
+					.wp-block-create-block-population-count {
+						font-size: ${TabletFontSize}em;
+					}
+				}`
+			}
+			</style>
 		</div>
 	);
 }

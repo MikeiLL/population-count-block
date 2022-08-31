@@ -39,7 +39,7 @@ import './editor.scss';
  */
 export default function Edit( props ) {
 	const {
-		attributes: {preamble, closing, alignment, previewmode},
+		attributes: {preamble, closing, alignment, previewmode = "Desktop", DesktopFontSize, MobileFontSize, TabletFontSize},
 		className, focus,
 		setAttributes,
 	} = props;
@@ -147,10 +147,10 @@ export default function Edit( props ) {
 							<RangeControl
 								label=" "
 								min={0.5}
-								max={10}
+								max={8}
 								step={0.1}
-								value={props.attributes.fontsize}
-								onChange={ value => setAttributes( {fontsize: value}) }
+								value={props.attributes[previewmode + "FontSize"] || 3}
+								onChange={ value => setAttributes( {[previewmode + "FontSize"]: value}) }
 							/>
 						</BaseControl>
 					</PanelRow>
@@ -167,7 +167,7 @@ export default function Edit( props ) {
 					value={ preamble }
 					onChange={ onChangePreamble }
 				/>
-				<span id="population-count-container" class="population-count-count"> </span>
+				<span class="population-count-count"> </span>
 				<RichText
 					tagName="span"
 					className="steps"
@@ -179,6 +179,23 @@ export default function Edit( props ) {
 					onChange={ onChangeClosing }
 				/>
 			</p>
+
+			<style>{
+			`.wp-block-create-block-population-count {
+				font-size: ${DesktopFontSize}em;
+			}
+			@media (max-width: 767px) {
+					.wp-block-create-block-population-count {
+						font-size: ${MobileFontSize}em;
+					}
+				}
+				@media (min-width: 768px) and (max-width: 1050px) {
+					.wp-block-create-block-population-count {
+						font-size: ${TabletFontSize}em;
+					}
+				}`
+			}
+			</style>
 		</div>
 	);
 }

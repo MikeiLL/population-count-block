@@ -42,7 +42,13 @@
 			"source": "html",
 			"selector": ".closing"
 		},
-		"fontsize": {
+		"DesktopFontSize": {
+			"type": "number"
+		},
+		"TabletFontSize": {
+			"type": "number"
+		},
+		"MobileFontSize": {
 			"type": "number"
 		}
 	}
