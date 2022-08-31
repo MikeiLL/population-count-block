@@ -1,56 +1,33 @@
-window.addEventListener("load", (event) => {
-  let population_count_container = document.getElementById(
-    "population-count-container"
-  );
-  //population_count_container.innerHTML = ptsp_script_vars.population_count_copy; // sent from php
-});
-
-function maind(){
-	startdate = new Date()
-	now(startdate.getYear(),startdate.getMonth(),startdate.getDate(),startdate.getHours(),startdate.getMinutes(),startdate.getSeconds())
+function ChangeValue(){
+	const refdate = 1596204000000, // July 1 2020
+		refpop = 7794798739, // population as per Worldometers
+		refinc = 81330639; // annual increase as per Worldometers
+	const refrate = (refpop + refinc) / refpop;
+	/**
+	 * Population as of July 1, 2020, multiplied by the annual growth rate.
+	 *
+	 * First: within parentheses,
+	 * 	get number of milliseconds between NOW and July 1, 2020
+	 * 	divided by the number of milliseconds in a year,
+	 * 	which gives us the fractional number of years since reference date.
+	 * Second:
+	 * 	because exponentiation has operator precidence, we exponentiate the
+	 * 	annual percentage growth (refrate) by number of years, yielding the
+	 * 	percentage growth (perportion) since July 1, 2020 (about 1% or 2% as of 2022)
+	 * Lastly:
+	 * 	Multiply the July 2020 population by the growth percentage since then.
+	 *
+	 */
+	const estpop = refpop * refrate ** ((+new Date - refdate) / (31556952 * 1000))
+	const numberstring = new Intl.NumberFormat().format(Math.floor(estpop));
+	let popcounters = document.querySelectorAll(".population-count-count").forEach(el => el.innerHTML = numberstring);
 }
-function ChangeValue(number,pv){
-	numberstring =""
-	var j=0
-	var i=0
-	while (number > 1)
-	 {
+setInterval(ChangeValue, 1000)
 
-	    numberstring = (Math.round(number-0.5) % 10) + numberstring
-	    number= number / 10
-	    j++
-	    if (number > 1 && j==3) {
-			numberstring = "," + numberstring
-			j=0}
-	    i++
-	 }
-
-	 numberstring=numberstring
-
-if (pv==1) {/* document.getElementById("worldpop").innerHTML=numberstring */
-let population_count_container = document.getElementById(
-  "population-count-container"
-);
-	if (population_count_container) population_count_container.innerHTML = numberstring;
-	}
-}
-
-
-function now(year,month,date,hours,minutes,seconds){
-startdatum = new Date(year,month,date,hours,minutes,seconds)
-
-var now = 5600000000.0
-var now2 = 5690000000.0
-var groeipercentage = (now2 - now) / now *100
-var groeiperseconde = (now * (groeipercentage/100))/365.0/24.0/60.0/60.0
-nu = new Date ()
-schuldstartdatum = new Date (96,1,1)
-secondenoppagina = (nu.getTime() - startdatum.getTime())/1000
-totaleschuld= (nu.getTime() - schuldstartdatum.getTime())/1000*groeiperseconde + now
-ChangeValue(totaleschuld,1);
-
-
-timerID = setTimeout("now(startdatum.getYear(),startdatum.getMonth(),startdatum.getDate(),startdatum.getHours(),startdatum.getMinutes(),startdatum.getSeconds())",200)
-}
-
-window.onload=maind
+// 2019, 2022 figures estimate 5% increase as per https://www.worldometers.info/world-population
+// older figures from 1990's, 1.05% rate.
+// We are saying 1 birth every 8 seconds, one death every 12 seconds, so population increases by 1 every 24 seconds.
+// There are about πe+7 (30 million-ish) seconds in a year, which makes about 1.3 million increase per year.
+// This would be agrowth rate of about .1666%
+// However, Worldometer suggests 81 million increase per year, or a ~1.05% growth rate.
+// Population growth peaked in the 1970s and has been falling off ever since.
