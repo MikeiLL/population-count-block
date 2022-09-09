@@ -39,9 +39,13 @@ import './editor.scss';
  */
 export default function Edit( props ) {
 	const {
-		attributes: {preamble, closing, alignment, previewmode = "Desktop", DesktopFontSize, MobileFontSize, TabletFontSize},
+		attributes: {preamble, closing, alignment, previewmode = "Desktop", DesktopFontSize = 3},
 		className, focus,
 		setAttributes,
+	} = props;
+
+	const {
+		attributes: {MobileFontSize = DesktopFontSize, TabletFontSize = DesktopFontSize}
 	} = props;
 
 	function onChangeAlignment( updatedAlignment ) {
@@ -98,7 +102,9 @@ export default function Edit( props ) {
 					<div className="kadence-title-bar">
               <span className="kadence-control-title">Font Size (em)</span>
               <ButtonGroup className="kb-measure-responsive-options" aria-label="Device">
-                <Button className="kb-responsive-btn kb-desk-tab is-active is-small">
+                <Button className={`kb-responsive-btn kb-desk-tab is-small ${
+										previewmode === "Desktop" ? "is-active" : " "
+									}`}>
 								<span
 								onClick={() =>
 									handleDesktopBtnClick({
@@ -108,11 +114,11 @@ export default function Edit( props ) {
 												.__experimentalSetPreviewDeviceType,
 									})
 								}
-								className={`typoResButton dashicons dashicons-desktop ${
-									previewmode === "Desktop" ? "active" : " "
-								}`}></span>
+								className="typoResButton dashicons dashicons-desktop"></span>
                 </Button>
-                <Button className="kb-responsive-btn kb-tablet-tab is-small">
+                <Button className={`kb-responsive-btn kb-tablet-tab is-small ${
+										previewmode === "Tablet" ? "is-active" : " "
+									}`}>
 								<span
 									onClick={() =>
 										handleTabBtnClick({
@@ -122,11 +128,11 @@ export default function Edit( props ) {
 													.__experimentalSetPreviewDeviceType,
 										})
 									}
-									className={`typoResButton dashicons dashicons-tablet ${
-										previewmode === "Tablet" ? "active" : " "
-									}`}></span>
+									className="typoResButton dashicons dashicons-tablet"></span>
                 </Button>
-                <Button className="kb-responsive-btn kb-mobile-tab is-small">
+                <Button className={`kb-responsive-btn kb-mobile-tab is-small ${
+										previewmode === "Mobile" ? "is-active" : " "
+									}`}>
 								<span
 									onClick={() =>
 										handleMobileBtnClick({
@@ -136,9 +142,7 @@ export default function Edit( props ) {
 													.__experimentalSetPreviewDeviceType,
 										})
 									}
-									className={`typoResButton dashicons dashicons-smartphone ${
-										previewmode === "Mobile" ? "active" : " "
-									}`}></span>
+									className="typoResButton dashicons dashicons-smartphone"></span>
                 </Button>
               </ButtonGroup>
             </div>

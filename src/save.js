@@ -17,10 +17,14 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
  */
 export default function save(props) {
 
-	const {
-		attributes: {preamble, closing, alignment, DesktopFontSize, MobileFontSize, TabletFontSize},
+	let {
+		attributes: {preamble, closing, alignment, previewmode = "Desktop", DesktopFontSize = 3},
 		className,
 		setAttributes,
+	} = props;
+
+	const {
+		attributes: {MobileFontSize = DesktopFontSize, TabletFontSize = DesktopFontSize}
 	} = props;
 
 	return (

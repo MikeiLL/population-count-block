@@ -70,13 +70,17 @@ function Edit(props) {
       closing,
       alignment,
       previewmode = "Desktop",
-      DesktopFontSize,
-      MobileFontSize,
-      TabletFontSize
+      DesktopFontSize = 3
     },
     className,
     focus,
     setAttributes
+  } = props;
+  const {
+    attributes: {
+      MobileFontSize = DesktopFontSize,
+      TabletFontSize = DesktopFontSize
+    }
   } = props;
 
   function onChangeAlignment(updatedAlignment) {
@@ -144,29 +148,29 @@ function Edit(props) {
     className: "kb-measure-responsive-options",
     "aria-label": "Device"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    className: "kb-responsive-btn kb-desk-tab is-active is-small"
+    className: `kb-responsive-btn kb-desk-tab is-small ${previewmode === "Desktop" ? "is-active" : " "}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     onClick: () => handleDesktopBtnClick({
       setAttributes,
       setPreviewDeviceType: (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.dispatch)("core/edit-post").__experimentalSetPreviewDeviceType
     }),
-    className: `typoResButton dashicons dashicons-desktop ${previewmode === "Desktop" ? "active" : " "}`
+    className: "typoResButton dashicons dashicons-desktop"
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    className: "kb-responsive-btn kb-tablet-tab is-small"
+    className: `kb-responsive-btn kb-tablet-tab is-small ${previewmode === "Tablet" ? "is-active" : " "}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     onClick: () => handleTabBtnClick({
       setAttributes,
       setPreviewDeviceType: (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.dispatch)("core/edit-post").__experimentalSetPreviewDeviceType
     }),
-    className: `typoResButton dashicons dashicons-tablet ${previewmode === "Tablet" ? "active" : " "}`
+    className: "typoResButton dashicons dashicons-tablet"
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    className: "kb-responsive-btn kb-mobile-tab is-small"
+    className: `kb-responsive-btn kb-mobile-tab is-small ${previewmode === "Mobile" ? "is-active" : " "}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     onClick: () => handleMobileBtnClick({
       setAttributes,
       setPreviewDeviceType: (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.dispatch)("core/edit-post").__experimentalSetPreviewDeviceType
     }),
-    className: `typoResButton dashicons dashicons-smartphone ${previewmode === "Mobile" ? "active" : " "}`
+    className: "typoResButton dashicons dashicons-smartphone"
   })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, {
     className: "width-100"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
@@ -308,17 +312,22 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 function save(props) {
-  const {
+  let {
     attributes: {
       preamble,
       closing,
       alignment,
-      DesktopFontSize,
-      MobileFontSize,
-      TabletFontSize
+      previewmode = "Desktop",
+      DesktopFontSize = 3
     },
     className,
     setAttributes
+  } = props;
+  const {
+    attributes: {
+      MobileFontSize = DesktopFontSize,
+      TabletFontSize = DesktopFontSize
+    }
   } = props;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
     className: className
